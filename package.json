@@ -1,0 +1,39 @@
+{
+  "name": "collaborative-whiteboard",
+  "version": "1.0.0",
+  "description": "A super cool colab tool",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe-riley/collaborative-whiteboard.git"
+  },
+  "keywords": [
+    "collaboration",
+    "whiteboard",
+    "fabric"
+  ],
+  "author": "yes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joe-riley/collaborative-whiteboard/issues"
+  },
+  "homepage": "https://github.com/joe-riley/collaborative-whiteboard#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "fabric": "^4.3.0",
+    "handlebars": "^4.7.6",
+    "materialize": "^1.0.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
