@@ -1,0 +1,29 @@
+
+:root {
+  --color-gold: #D79922;
+  --color-baige: #EFE2BA;
+  --color-vermillion: #F13C20;
+  --color-dark-blue: #4056A1;
+  --color-baby-blue: #C5CBE3;
+  --color-egg-shell: #F0EAD6;
+}
+
+body {
+  font-family: "Yusei Magic", serif;
+  background-color: var(--color-baige);
+}
+
+nav {
+  background-color: var(--color-dark-blue);
+}
+
+nav .brand-logo {
+  color: var(--color-gold);
+  /* text-decoration: none; */
+  padding-left: .5em;
+}
+
+.right li {
+  margin-right: 2.2em;
+  font-size: 18px;
+}
