@@ -3,7 +3,7 @@ const { User, Board } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// GET /api/user
+// GET /api/users
 router.get('/', (req, res) => {
   User.findAll({
     attributes: { exclude: ['password'] }
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/user/1
+// GET /api/users/1
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -25,7 +25,11 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Board,
-        attributes: ['id', 'title', 'board_content', 'created_at']
+        attributes: [
+          'id',
+          'title',
+          // 'board_content',
+          'created_at']
       }
     ]
   })
@@ -42,7 +46,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST /api/user
+// POST /api/users
 router.post('/', (req, res) => {
   // expects {username: 'xyz', email: 'xyz@gmail.com', password: 'password1234'}
   User.create({
@@ -61,7 +65,7 @@ router.post('/', (req, res) => {
     })
 });
 
-// POST /api/user/login
+// POST /api/users/login
 router.post('/login', (req, res) => {
   User.findOne({
     where: {
@@ -100,7 +104,7 @@ router.post('/logout', withAuth, (req, res) => {
   }
 });
 
-// PUT /api/user/1
+// PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
   User.update(req.body, {
     individualHooks: true,
@@ -121,7 +125,7 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-// DELETE /api/user/1
+// DELETE /api/users/1
 router.delete('/:id', withAuth, (req, res) => {
   User.destroy({
     where: {
