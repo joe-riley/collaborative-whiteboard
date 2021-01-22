@@ -4,11 +4,11 @@
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li>        
-        <div class="input-field col s6 s12">
-          <i class="medium material-icons prefix">search</i>
-          <input placeholder="Search a Subject" id="search" type="text" class="validate">
-        </div>
-      <li>Login</li>
+        <input placeholder="Search Boards" data-target="search" type="search" class="input-field">
+      </li>
+      <li><button data-target="signup-modal" class="btn modal-trigger">signup</button></li>
+      <li><button data-target="login-modal" class="btn modal-trigger">login</button></li>
+
     </ul>
   </div>
 </nav>
@@ -22,4 +22,6 @@
   <li>Login</li>
 </ul>
 
-{{> board_editor}}
+{{> board-editor}}
+{{> login-modal}}
+{{> signup-modal}}
