@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/boards
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
   Board.create({
     title: req.body.title,
     // board_content: req.body.board_content,
@@ -76,7 +76,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 // PUT /api/boards/1
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', (req, res) => {
   Board.update({
     title: req.body.title,
     post_content: req.body.post_content
@@ -101,7 +101,7 @@ router.put('/:id', withAuth, (req, res) => {
 });
 
 // DELETE /api/boards/1
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
   Board.destroy({
     where: {
       id: req.params.id
