@@ -16,6 +16,14 @@ fabric
 Heroku
 github
 
+# example of .env code
+DB_NAME='collaborative_whiteboard_db'
+DB_USER=
+DB_PW=
+
+SEQUELIZE_STORE=
+
+
 # Userstory
 ## As a user
 * When I log onto the site I am presented with a page that allows me to login or sign up
