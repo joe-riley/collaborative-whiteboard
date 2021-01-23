@@ -1,0 +1,219 @@
+<div id="bd-wrapper" ng-controller="CanvasControls">
+      <h2><span>Fabric.js demos</span> · Free drawing</h2>
+
+      <style>
+#drawing-mode {
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+#drawing-mode-options {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background: #f5f2f0;
+  padding: 10px;
+}
+label {
+  display: inline-block; width: 130px;
+}
+.info {
+  display: inline-block;
+  width: 25px;
+  background: #ffc;
+}
+#bd-wrapper {
+  min-width: 1500px;
+}
+
+
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> $ <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> document<span class="token punctuation">.</span>getElementById<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> canvas <span class="token operator">=</span> this<span class="token punctuation">.</span>__canvas <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>Canvas<span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    isDrawingMode<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  fabric<span class="token punctuation">.</span>Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>transparentCorners <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> drawingModeEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-mode'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingOptionsEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-mode-options'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingColorEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-color'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingShadowColorEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-shadow-color'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingLineWidthEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-line-width'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingShadowWidth <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-shadow-width'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      drawingShadowOffset <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'drawing-shadow-offset'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      clearEl <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'clear-canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  clearEl<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> canvas<span class="token punctuation">.</span>clear<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  drawingModeEl<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>isDrawingMode <span class="token operator">=</span> <span class="token operator">!</span>canvas<span class="token punctuation">.</span>isDrawingMode<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>canvas<span class="token punctuation">.</span>isDrawingMode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      drawingModeEl<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Cancel drawing mode'</span><span class="token punctuation">;</span>
+      drawingOptionsEl<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      drawingModeEl<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Enter drawing mode'</span><span class="token punctuation">;</span>
+      drawingOptionsEl<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> vLinePatternBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vLinePatternBrush<span class="token punctuation">.</span>getPatternSrc <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">var</span> patternCanvas <span class="token operator">=</span> fabric<span class="token punctuation">.</span>document<span class="token punctuation">.</span>createElement<span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      patternCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> ctx <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>getContext<span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> this<span class="token punctuation">.</span>color<span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>beginPath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>moveTo<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>lineTo<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>closePath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>stroke<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> patternCanvas<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> hLinePatternBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hLinePatternBrush<span class="token punctuation">.</span>getPatternSrc <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">var</span> patternCanvas <span class="token operator">=</span> fabric<span class="token punctuation">.</span>document<span class="token punctuation">.</span>createElement<span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      patternCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> ctx <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>getContext<span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> this<span class="token punctuation">.</span>color<span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>beginPath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>moveTo<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>lineTo<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>closePath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>stroke<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> patternCanvas<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> squarePatternBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    squarePatternBrush<span class="token punctuation">.</span>getPatternSrc <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">var</span> squareWidth <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> squareDistance <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> patternCanvas <span class="token operator">=</span> fabric<span class="token punctuation">.</span>document<span class="token punctuation">.</span>createElement<span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      patternCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> squareWidth <span class="token operator">+</span> squareDistance<span class="token punctuation">;</span>
+      <span class="token keyword">var</span> ctx <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>getContext<span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> this<span class="token punctuation">.</span>color<span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>fillRect<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> squareWidth<span class="token punctuation">,</span> squareWidth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> patternCanvas<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> diamondPatternBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    diamondPatternBrush<span class="token punctuation">.</span>getPatternSrc <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">var</span> squareWidth <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> squareDistance <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> patternCanvas <span class="token operator">=</span> fabric<span class="token punctuation">.</span>document<span class="token punctuation">.</span>createElement<span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> rect <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>Rect<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        width<span class="token punctuation">:</span> squareWidth<span class="token punctuation">,</span>
+        height<span class="token punctuation">:</span> squareWidth<span class="token punctuation">,</span>
+        angle<span class="token punctuation">:</span> <span class="token number">45</span><span class="token punctuation">,</span>
+        fill<span class="token punctuation">:</span> this<span class="token punctuation">.</span>color
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> canvasWidth <span class="token operator">=</span> rect<span class="token punctuation">.</span>getBoundingRect<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>width<span class="token punctuation">;</span>
+
+      patternCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> canvasWidth <span class="token operator">+</span> squareDistance<span class="token punctuation">;</span>
+      rect<span class="token punctuation">.</span>set<span class="token punctuation">(</span><span class="token punctuation">{</span> left<span class="token punctuation">:</span> canvasWidth <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> top<span class="token punctuation">:</span> canvasWidth <span class="token operator">/</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> ctx <span class="token operator">=</span> patternCanvas<span class="token punctuation">.</span>getContext<span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      rect<span class="token punctuation">.</span>render<span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> patternCanvas<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> img <span class="token operator">=</span> <span class="token keyword">new</span> Image<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'../assets/honey_im_subtle.png'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> texturePatternBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>PatternBrush<span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    texturePatternBrush<span class="token punctuation">.</span>source <span class="token operator">=</span> img<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  $<span class="token punctuation">(</span><span class="token string">'drawing-mode-selector'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>this<span class="token punctuation">.</span>value <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'hline'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> vLinePatternBrush<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>this<span class="token punctuation">.</span>value <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'vline'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> hLinePatternBrush<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>this<span class="token punctuation">.</span>value <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'square'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> squarePatternBrush<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>this<span class="token punctuation">.</span>value <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'diamond'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> diamondPatternBrush<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>this<span class="token punctuation">.</span>value <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'texture'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> texturePatternBrush<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      canvas<span class="token punctuation">.</span>freeDrawingBrush <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">[</span>this<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token string">'Brush'</span><span class="token punctuation">]</span><span class="token punctuation">(</span>canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> brush <span class="token operator">=</span> canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">;</span>
+      brush<span class="token punctuation">.</span>color <span class="token operator">=</span> drawingColorEl<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>brush<span class="token punctuation">.</span>getPatternSrc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        brush<span class="token punctuation">.</span>source <span class="token operator">=</span> brush<span class="token punctuation">.</span>getPatternSrc<span class="token punctuation">.</span>call<span class="token punctuation">(</span>brush<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      brush<span class="token punctuation">.</span>width <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>drawingLineWidthEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      brush<span class="token punctuation">.</span>shadow <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>Shadow<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        blur<span class="token punctuation">:</span> parseInt<span class="token punctuation">(</span>drawingShadowWidth<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        offsetX<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        offsetY<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        affectStroke<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        color<span class="token punctuation">:</span> drawingShadowColorEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  drawingColorEl<span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> brush <span class="token operator">=</span> canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">;</span>
+    brush<span class="token punctuation">.</span>color <span class="token operator">=</span> this<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>brush<span class="token punctuation">.</span>getPatternSrc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      brush<span class="token punctuation">.</span>source <span class="token operator">=</span> brush<span class="token punctuation">.</span>getPatternSrc<span class="token punctuation">.</span>call<span class="token punctuation">(</span>brush<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  drawingShadowColorEl<span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>shadow<span class="token punctuation">.</span>color <span class="token operator">=</span> this<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  drawingLineWidthEl<span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>width <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>this<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    this<span class="token punctuation">.</span>previousSibling<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> this<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  drawingShadowWidth<span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>shadow<span class="token punctuation">.</span>blur <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>this<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    this<span class="token punctuation">.</span>previousSibling<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> this<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  drawingShadowOffset<span class="token punctuation">.</span>onchange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>shadow<span class="token punctuation">.</span>offsetX <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>this<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>shadow<span class="token punctuation">.</span>offsetY <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>this<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    this<span class="token punctuation">.</span>previousSibling<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> this<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>color <span class="token operator">=</span> drawingColorEl<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>source <span class="token operator">=</span> canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>getPatternSrc<span class="token punctuation">.</span>call<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>width <span class="token operator">=</span> parseInt<span class="token punctuation">(</span>drawingLineWidthEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    canvas<span class="token punctuation">.</span>freeDrawingBrush<span class="token punctuation">.</span>shadow <span class="token operator">=</span> <span class="token keyword">new</span> fabric<span class="token punctuation">.</span>Shadow<span class="token punctuation">(</span><span class="token punctuation">{</span>
+      blur<span class="token punctuation">:</span> parseInt<span class="token punctuation">(</span>drawingShadowWidth<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      offsetX<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      offsetY<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      affectStroke<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      color<span class="token punctuation">:</span> drawingShadowColorEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
