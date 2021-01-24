@@ -3,9 +3,9 @@
     return document.getElementById(id);
   };
 
-  var canvas = (this.__canvas = new fabric.Canvas("c", {
-    isDrawingMode: true,
-  }));
+  // var canvas = (this.__canvas = new fabric.Canvas("c", {
+  //   isDrawingMode: true,
+  // }));
 
   fabric.Object.prototype.transparentCorners = false;
 
@@ -107,7 +107,7 @@
     };
 
     var img = new Image();
-    img.src = "../assets/honey_im_subtle.png";
+    img.src = "http://fabricjs.com/assets/honey_im_subtle.png";
 
     var texturePatternBrush = new fabric.PatternBrush(canvas);
     texturePatternBrush.source = img;
@@ -171,9 +171,9 @@
 
   if (canvas.freeDrawingBrush) {
     canvas.freeDrawingBrush.color = drawingColorEl.value;
-    canvas.freeDrawingBrush.source = canvas.freeDrawingBrush.getPatternSrc.call(
-      this
-    );
+    //canvas.freeDrawingBrush.source = canvas.freeDrawingBrush.getPatternSrc.call(
+    //this
+    //);
     canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
     canvas.freeDrawingBrush.shadow = new fabric.Shadow({
       blur: parseInt(drawingShadowWidth.value, 10) || 0,
