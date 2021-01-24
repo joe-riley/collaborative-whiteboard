@@ -1,4 +1,3 @@
-// create a wrapper around native canvas element (with id="c")
 var canvas = new fabric.Canvas("c");
 
 // create shape objects
