@@ -15,14 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // confirm password on register after entering confirm password
 const passwordEl = document.getElementById('password');
 const confirmPasswordEl = document.getElementById('confirm_password');
-console.log(`password1: ${passwordEl.textContent}, password2: ${confirmPasswordEl.textContent}`)
-confirmPasswordEl.onkeyup = () => {
-  console.log('hi');
-  if(passwordEl.textContent !== confirmPasswordEl.textContent) {
+confirmPasswordEl.addEventListener('keyup', () => {
+  console.log('lah');
+  if(confirmPasswordEl.value !== passwordEl.value) {
     confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
   } else {
     confirmPasswordEl.setCustomValidity('');
   }
-
-};
+});
 
