@@ -1,7 +1,7 @@
 
 :root {
   --color-gold: #D79922;
-  --color-baige: #EFE2BA;
+  --color-beige: #EFE2BA;
   --color-vermillion: #F13C20;
   --color-dark-blue: #4052a1;
   --color-baby-blue: #c6e0fdfa;
@@ -12,8 +12,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Yusei Magic", serif;
-  background-color: var(--color-baige);
-  overflow: hidden;
+  background-color: var(--color-beige);
 }
 
 nav {
@@ -31,7 +30,6 @@ nav .right li {
   max-height: 64px;
   font-size: 18px;
 }
-
 
 nav input[type=search] {
   margin: 50% auto;
