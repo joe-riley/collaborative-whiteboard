@@ -11,8 +11,9 @@ router.get('/', (req, res) => {
     order: [['created_at', 'DESC']],
     attributes: [
       'id',
-      // 'board_content',
       'title',
+      'description',
+      // 'board_content',
       'created_at',
     ],
     include: [
@@ -37,8 +38,9 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
       'id',
-      // 'board_content',
       'title',
+      'description',
+      // 'board_content',
       'created_at',
     ],
     include: [
