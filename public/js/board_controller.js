@@ -13,3 +13,9 @@ var rect = new fabric.Rect({
 // "add" rectangle onto canvas
 canvas.add(rect);
 canvas.renderAll();
+
+// create text
+var text = new fabric.Text('hello world', { left: 100, top: 100 });
+
+// "add" text onto canvas
+canvas.add(text);

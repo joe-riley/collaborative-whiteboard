@@ -1,7 +1,7 @@
 
 :root {
   --color-gold: #D79922;
-  --color-baige: #EFE2BA;
+  --color-beige: #EFE2BA;
   --color-vermillion: #F13C20;
   --color-dark-blue: #4056A1;
   --color-baby-blue: #C5CBE3;
@@ -10,7 +10,7 @@
 
 body {
   font-family: "Yusei Magic", serif;
-  background-color: var(--color-baige);
+  background-color: var(--color-beige);
 }
 
 nav {
