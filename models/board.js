@@ -19,7 +19,7 @@ Board.init(
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(750),
       allowNull: false
     },
     // board_content: {

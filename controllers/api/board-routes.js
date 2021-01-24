@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
   })
     .then(dbBoardData => {
       if (!dbBoardData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No board found with this id' });
         return;
       }
       res.json(dbBoardData);
@@ -91,7 +91,7 @@ router.put('/:id', (req, res) => {
   )
     .then(dbBoardData => {
       if (!dbBoardData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No board found with this id' });
         return;
       }
       res.json(dbBoardData);
@@ -111,7 +111,7 @@ router.delete('/:id', (req, res) => {
   })
     .then(dbBoardData => {
       if (!dbBoardData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No board found with this id' });
         return;
       }
       res.json(dbBoardData);
