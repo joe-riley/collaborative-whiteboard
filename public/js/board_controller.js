@@ -1,13 +1,13 @@
 // create a wrapper around native canvas element (with id="c")
-var canvas = new fabric.Canvas('c');
+var canvas = new fabric.Canvas("c");
 
 // create shape objects
 var rect = new fabric.Rect({
   left: 100,
   top: 100,
-  fill: 'red',
+  fill: "red",
   width: 20,
-  height: 20
+  height: 20,
 });
 
 var circle = new fabric.Circle({
