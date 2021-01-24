@@ -1,10 +1,4 @@
-// create a wrapper around native canvas element (with id="c")
-<<<<<<< HEAD
-var canvas = new fabric.Canvas('board-editor');
-canvas.setDimensions({width: 800, height: 600});
-=======
 var canvas = new fabric.Canvas("c");
->>>>>>> develop
 
 // create shape objects
 var rect = new fabric.Rect({
