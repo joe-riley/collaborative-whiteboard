@@ -18,6 +18,10 @@ Board.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    description: {
+      type: DataTypes.STRING(750),
+      allowNull: false
+    },
     // board_content: {
     //   type: DataTypes.JSON,
     //   allowNull: false,
