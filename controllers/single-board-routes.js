@@ -33,34 +33,4 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.get('/edit/:id', (req, res) => {
-  Board.findOne({
-    where: {
-      id: req.params.id
-    },
-    attributes: [
-      'id',
-      // 'board_content',
-      'title',
-      'description',
-      'created_at'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-    .then(dbBoardData => {
-      // serialize data before passing to template
-      const board = dbBoardData.get({ plain: true });
-      res.render('edit-board', { board, loggedIn: true });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
 module.exports = router;

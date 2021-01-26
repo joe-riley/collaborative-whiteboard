@@ -1,34 +1,35 @@
-<section>
-  <h2>Your Profile</h2>
-
-  <h3>Create a new board</h3>
-  <form class="new-board-form">
-    <div>
-      <label for="board-title">Board Title</label>
-      <input type="text" id="board-title" name="board-title" />
+<div class="container">
+  <h2 style="color: var(--color-dark-blue)">Your Profile</h2>
+  <div class="section">
+    <h3>Create a New Board</h3>
+    <div class="row">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="board-title" type="text" data-length="40">
+          <label for="board-title" class="sans-serif">Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="board-description" class="materialize-textarea" data-length="750"></textarea>
+          <label for="board-description" class="sans-serif">Description</label>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <label for="board-description">Description</label>
-      <textarea name="board-description"></textarea>
-    </div>
-
     <button type="submit" class="btn">Create</button>
-  </form>
-</section>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
 
-{{#if boards.length}}
-<section>
-  <h3>Your Boards</h3>
-  <ol>
-    {{#each boards as |board|}}
-    <li>
-      {{> board-info board}}
-      <a href="/profile/edit/{{board.id}}" class="edit-link">Edit board</a>
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}}
+    {{#if boards.length}}
+    <h3>Your Boards</h3>
+    <div class="row">
+      {{#each boards as |board|}}
+      {{> board-info-homepage board}}
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+</div>
 
 <script src="/js/add-board.js"></script>
