@@ -1,3 +1,6 @@
+/////////////////////////////////
+// free drawing
+
 (function () {
   var $ = function (id) {
     return document.getElementById(id);
@@ -184,3 +187,81 @@
     });
   }
 })();
+
+/////////////////////////////////
+// add circle
+
+function addCir() {
+  var circle = new fabric.Circle({
+    top: 100, left: 100, radius: 50, fill: 'purple'
+  });
+  canvas.add(circle);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addCircle = $('add-circle');
+addCircle.onclick = addCir;
+
+/////////////////////////////////
+// add rectangle
+
+function addRect() {
+  var rectangle = new fabric.Rect({
+    top: 50, left: 50, width: 75, height: 50, fill: 'blue'
+  });
+  canvas.add(rectangle);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addRectangle = $('add-rectangle');
+addRectangle.onclick = addRect;
+
+/////////////////////////////////
+// add triangle
+
+function addTri() {
+  var triangle = new fabric.Triangle({
+    top: 200, left: 200, width: 75, height: 50, fill: 'teal'
+  });
+  canvas.add(triangle);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addTriangle = $('add-triangle');
+addTriangle.onclick = addTri;
+
+/////////////////////////////////
+// add line
+
+function addLine() {
+  var line = new fabric.Line([50, 100, 200, 200], {
+    top: 300, left: 300, stroke: 'black'
+  });
+  canvas.add(line);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addLineEl = $('add-line');
+addLineEl.onclick = addLine;
+
+/////////////////////////////////
+// add text
+
+function addText() {
+  var textbox = new fabric.Textbox('Lorum ipsum dolor sit amet', {
+    left: 250,
+    top: 250,
+    width: 150,
+    fontSize: 20
+  });
+  canvas.add(textbox).setActiveObject(textbox);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addTextbox = $('add-text');
+addTextbox.onclick = addText;
