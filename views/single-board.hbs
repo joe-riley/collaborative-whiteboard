@@ -1,1 +1,18 @@
-{{> board-info board}}
+<div class="container">
+  <div class="row">
+    <div class="col s12 m7">
+      <div class="card large">
+        <div class="card-image">
+          <img src="/images/whiteboard-example.png">
+          <span class="card-title board-title">{{title}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{board.board_description}}</p>
+        </div>
+        <div class="card-action">
+          <a class="username" href="#">Edit Board</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

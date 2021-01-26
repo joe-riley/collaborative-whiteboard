@@ -3,7 +3,7 @@ const apiRoutes = require('./api');
 // const htmlRoutes = require('./html/html-routes');
 const homeRoutes = require('./home-routes.js');
 const profileRoutes = require('./profile-routes.js');
-const boardRoutes = require('./board-routes.js');
+const boardRoutes = require('./single-board-routes.js');
 
 
 // router.use('/', htmlRoutes);
