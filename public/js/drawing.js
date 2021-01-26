@@ -232,3 +232,21 @@ var $ = function (id) { return document.getElementById(id) };
 
 var addTriangle = $('add-triangle');
 addTriangle.onclick = addTri;
+
+/////////////////////////////////
+// add text
+
+function addText() {
+  var textbox = new fabric.Textbox('Lorum ipsum dolor sit amet', {
+    left: 250,
+    top: 250,
+    width: 150,
+    fontSize: 20
+  });
+  canvas.add(textbox).setActiveObject(textbox);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addTextbox = $('add-text');
+addTextbox.onclick = addText;
