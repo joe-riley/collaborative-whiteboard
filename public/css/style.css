@@ -85,3 +85,12 @@ nav input[type=search]:focus {
   border-radius: 3px;
   margin: 10px;
 }
+
+.board-title {
+  font-family: "Yusei Magic", serif;
+  color: var(--color-dark-blue);
+}
+
+.username {
+  font-family: "Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
+}
