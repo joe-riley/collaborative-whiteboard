@@ -18,10 +18,10 @@ Board.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    // board_content: {
-    //   type: DataTypes.JSON,
-    //   allowNull: false,
-    // },
+    board_content: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {

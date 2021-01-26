@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   Board.create({
     title: req.body.title,
-    // board_content: req.body.board_content,
+    board_content: req.body.board_content,
     user_id: req.session.user_id
   })
     .then(dbBoardData => res.json(dbBoardData))
@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Board.update({
     title: req.body.title,
-    post_content: req.body.post_content
+    board_content: req.body.board_content
   },
     {
       where: {
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
   )
     .then(dbBoardData => {
       if (!dbBoardData) {
-        res.status(404).json({ message: 'No post found with this id' });
+        res.status(404).json({ message: 'No board found with this id' });
         return;
       }
       res.json(dbBoardData);
