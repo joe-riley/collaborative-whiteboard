@@ -234,6 +234,21 @@ var addTriangle = $('add-triangle');
 addTriangle.onclick = addTri;
 
 /////////////////////////////////
+// add line
+
+function addLine() {
+  var line = new fabric.Line([50, 100, 200, 200], {
+    top: 300, left: 300, stroke: 'black'
+  });
+  canvas.add(line);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addLineEl = $('add-line');
+addLineEl.onclick = addLine;
+
+/////////////////////////////////
 // add text
 
 function addText() {
