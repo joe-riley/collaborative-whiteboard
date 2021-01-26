@@ -184,3 +184,21 @@
     });
   }
 })();
+
+/////////////////////////////////
+// add circle
+
+// (function () {
+
+function add() {
+  var purple = new fabric.Circle({
+    top: 100, left: 100, radius: 50, fill: 'purple'
+  });
+  canvas.add(purple);
+}
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addCircle = $('add-circle');
+addCircle.onclick = add;
+

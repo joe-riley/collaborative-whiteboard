@@ -23,7 +23,3 @@ confirmPasswordEl.addEventListener('keyup', () => {
     confirmPasswordEl.setCustomValidity('');
   }
 });
-
-$(document).ready(function () {
-  $('input#board-title, textarea#board-description').characterCounter();
-});
