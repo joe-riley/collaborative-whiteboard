@@ -25,13 +25,13 @@ var triangle = new fabric.Triangle({
 });
 
 // add shapes onto canvas
-canvas.add(rect, circle, triangle);
+// canvas.add(rect, circle, triangle);
 
 // create text
 var text = new fabric.Text('hello world', { left: 150, top: 150 });
 
 // add text onto canvas
-canvas.add(text);
+// canvas.add(text);
 
 canvas.renderAll();
 

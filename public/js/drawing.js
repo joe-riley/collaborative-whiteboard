@@ -1,3 +1,6 @@
+/////////////////////////////////
+// free drawing
+
 (function () {
   var $ = function (id) {
     return document.getElementById(id);
@@ -188,17 +191,44 @@
 /////////////////////////////////
 // add circle
 
-// (function () {
-
-function add() {
-  var purple = new fabric.Circle({
+function addCir() {
+  var circle = new fabric.Circle({
     top: 100, left: 100, radius: 50, fill: 'purple'
   });
-  canvas.add(purple);
-}
+  canvas.add(circle);
+};
 
 var $ = function (id) { return document.getElementById(id) };
 
 var addCircle = $('add-circle');
-addCircle.onclick = add;
+addCircle.onclick = addCir;
 
+/////////////////////////////////
+// add rectangle
+
+function addRect() {
+  var rectangle = new fabric.Rect({
+    top: 50, left: 50, width: 75, height: 50, fill: 'blue'
+  });
+  canvas.add(rectangle);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addRectangle = $('add-rectangle');
+addRectangle.onclick = addRect;
+
+/////////////////////////////////
+// add triangle
+
+function addTri() {
+  var triangle = new fabric.Triangle({
+    top: 200, left: 200, width: 75, height: 50, fill: 'teal'
+  });
+  canvas.add(triangle);
+};
+
+var $ = function (id) { return document.getElementById(id) };
+
+var addTriangle = $('add-triangle');
+addTriangle.onclick = addTri;
