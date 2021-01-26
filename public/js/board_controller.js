@@ -4,7 +4,7 @@ var canvas = new fabric.Canvas("c");
 var rect = new fabric.Rect({
   left: 100,
   top: 100,
-  fill: "red",
+  fill: 'red',
   width: 20,
   height: 20,
 });
@@ -34,3 +34,4 @@ var text = new fabric.Text('hello world', { left: 150, top: 150 });
 canvas.add(text);
 
 canvas.renderAll();
+
