@@ -5,6 +5,8 @@
   --color-dark-blue: #4052a1;
   --color-baby-blue: #c6e0fdfa;
   --color-egg-shell: #F0EAD6;
+  --color-forest: #10491E;
+  --color-leaf: #7B7200;
 }
 
 body {
@@ -91,6 +93,6 @@ nav input[type=search]:focus {
   color: var(--color-dark-blue);
 }
 
-.username {
+.sans-serif {
   font-family: "Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
 }

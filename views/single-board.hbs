@@ -1,18 +1,17 @@
+<a class="sans-serif" style="color: var(--color-forest)" href="/profile"> &larr; Back to profile</a>
+
 <div class="container">
   <div class="row">
     <div class="col s12 m7">
-      <div class="card large">
-        <div class="card-image">
-          <img src="/images/whiteboard-example.png">
-          <span class="card-title board-title">{{title}}</span>
-        </div>
-        <div class="card-content">
-          <p>{{board.board_description}}</p>
-        </div>
-        <div class="card-action">
-          <a class="username" href="#">Edit Board</a>
-        </div>
-      </div>
+      <h2>{{board.title}}</h2>
+      <p class="sans-serif">{{board.description}}</p>
+      <p class="sans-serif">by {{board.user.username}} on {{board.created_at}}</p>
     </div>
   </div>
+
+  {{> board-editor}}
+  {{!-- needs to load the JSON for the board id into board-editor --}}
+
 </div>
+
+<script src="/javascript/delete-board.js"></script>
