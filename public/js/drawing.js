@@ -264,8 +264,4 @@ function addText() {
 var $ = function (id) { return document.getElementById(id) };
 
 var addTextbox = $('add-text');
-<<<<<<< HEAD
 addTextbox.onclick = addText;
-=======
-addTextbox.onclick = addText;
->>>>>>> develop
