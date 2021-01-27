@@ -18,21 +18,14 @@ Board.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-<<<<<<< HEAD
-    board_content: {
-      type: DataTypes.JSON,
-      allowNull: false,
-    },
-=======
     description: {
       type: DataTypes.STRING(750),
       allowNull: false
     },
-    // board_content: {
-    //   type: DataTypes.JSON,
-    //   allowNull: false,
-    // },
->>>>>>> develop
+    board_content: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
