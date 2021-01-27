@@ -15,7 +15,7 @@ Board.init(
       autoIncrement: true
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(40),
       allowNull: false
     },
     description: {

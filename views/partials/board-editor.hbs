@@ -12,8 +12,8 @@
 
   <div class="col s3">
     <div style="margin: 1rem;">
-      <button id="add-square" class="waves-effect waves-light btn btn-info">
-        <i class="material-icons left">add_box</i>Add Square</button>
+      <button id="add-rectangle" class="waves-effect waves-light btn btn-info">
+        <i class="material-icons left">add_box</i>Add Rectangle</button>
     </div>
   </div>
 
@@ -26,18 +26,24 @@
 
   <div class="col s3">
     <div style="margin: 1rem;">
+      <button id="add-line" class="waves-effect waves-light btn btn-info">
+        <i class="material-icons left">remove</i>Add Line</button>
+    </div>
+  </div>
+
+  <div class="col s3">
+    <div style="margin: 1rem;">
       <button id="add-text" class="waves-effect waves-light btn btn-info">
         <i class="material-icons left">short_text</i>Add Text</button>
     </div>
   </div>
 
-
   <div class="col s3">
     <div style="margin: 1rem;">
       <button id="drawing-mode" class="waves-effect waves-light btn btn-info">
-        <i class="material-icons left">create</i>Cancel drawing mode</button><br>
+        <i class="material-icons left">create</i>Enter drawing mode</button><br>
 
-      <div id="drawing-mode-options">
+      <div id="drawing-mode-options" style="display: none;">
         <label for="drawing-mode-selector">Mode:</label>
         <select id="drawing-mode-selector" class="browser-default">
           <option>Pencil</option>
@@ -77,7 +83,22 @@
 
   <div class="col s3">
     <div style="margin: 1rem;">
-      <button id="clear-canvas" class="btn btn-info"><i class="material-icons left">cancel</i>Clear Canvas</button><br>
+      <button id="clear-canvas" class="btn btn-info" style="background: var(--color-dark-blue)"><i
+          class="material-icons left">cancel</i>Clear Canvas</button><br>
+    </div>
+  </div>
+
+  <div class="col s3">
+    <div style="margin: 1rem;">
+      <button id="save-canvas" class="btn btn-info" style="background: var(--color-forest)"><i
+          class="material-icons left">save</i>Save Canvas</button><br>
+    </div>
+  </div>
+
+  <div class="col s3">
+    <div style="margin: 1rem;">
+      <button id="delete-canvas" class="btn btn-info" style="background: var(--color-vermillion)"><i
+          class="material-icons left">delete</i>Delete Canvas</button><br>
     </div>
   </div>
 </div>

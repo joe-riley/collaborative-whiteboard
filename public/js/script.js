@@ -17,10 +17,9 @@ const passwordEl = document.getElementById('password');
 const confirmPasswordEl = document.getElementById('confirm_password');
 confirmPasswordEl.addEventListener('keyup', () => {
   console.log('lah');
-  if(confirmPasswordEl.value !== passwordEl.value) {
+  if (confirmPasswordEl.value !== passwordEl.value) {
     confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
   } else {
     confirmPasswordEl.setCustomValidity('');
   }
 });
-
