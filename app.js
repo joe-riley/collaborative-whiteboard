@@ -24,11 +24,10 @@ app.engine('hbs', exphbs({
   partialsDir: __dirname + '/views/partials',
 }));
 
-
-
 // Public dir
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname,'/public/')));
+
 
 
 // Controllers

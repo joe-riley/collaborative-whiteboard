@@ -64,7 +64,6 @@ const boarddata = [
     board_content: {
       "some": "content"
     },
-    // board_content: insert JSON or string here
   }
 ];
 
