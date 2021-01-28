@@ -1,8 +1,6 @@
 async function newFormHandler(event) {
   event.preventDefault();
 
-  console.log('hi');
-
   // const title = document.querySelector('input[name="board-title"]').value;
   // const description = document.querySelector('textarea[name="board-description"]').value;
   const title = 'This is a new board';
@@ -12,14 +10,14 @@ async function newFormHandler(event) {
   const response = await fetch(`/api/boards`, {
     method: 'POST',
     body: JSON.stringify({
-        title,
-        description,
-        board_content,
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    )});
+      title,
+      description,
+      board_content,
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
 
   if (response.ok) {
     document.location.replace('/profile');

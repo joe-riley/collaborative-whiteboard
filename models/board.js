@@ -23,7 +23,7 @@ Board.init(
       allowNull: false
     },
     board_content: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING(),
       allowNull: false,
     },
     user_id: {

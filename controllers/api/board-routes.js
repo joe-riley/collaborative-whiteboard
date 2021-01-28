@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
       'id',
       'title',
       'description',
-      // 'board_content',
+      'board_content',
       'created_at',
     ],
     include: [
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
       'id',
       'title',
       'description',
-      // 'board_content',
+      'board_content',
       'created_at',
     ],
     include: [
@@ -67,7 +67,8 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   Board.create({
     title: req.body.title,
-    board_content: req.body.board_content,
+    description: req.body.description,
+    board_content: JSON.stringify(req.body.board_content),
     user_id: req.session.user_id
   })
     .then(dbBoardData => res.json(dbBoardData))
@@ -81,7 +82,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Board.update({
     title: req.body.title,
-    board_content: req.body.board_content
+    description: req.body.description,
+    board_content: JSON.stringify(req.body.board_content),
   },
     {
       where: {
