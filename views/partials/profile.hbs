@@ -15,6 +15,26 @@
           <label for="board-description" class="sans-serif">Description</label>
         </div>
       </div>
+      <div class="col s2">
+        <div style="margin: 0rem;">
+          <button id="clear-canvas" class="btn btn-info" style="background: var(--color-dark-blue)"><i
+              class="material-icons left">cancel</i>Clear</button><br>
+        </div>
+      </div>
+
+      <div class="col s2">
+        <div style="margin: 0rem;">
+          <button id="save-board" class="btn btn-info" style="background: var(--color-forest)"><i
+              class="material-icons left">save</i>Save</button><br>
+        </div>
+      </div>
+
+      <div class="col s2">
+        <div style="margin: 0rem;">
+          <button id="delete-canvas" class="btn btn-info" style="background: var(--color-vermillion)"><i
+              class="material-icons left">delete</i>Delete</button><br>
+        </div>
+      </div>
     </div>
   </div>
   {{> board-editor}}
@@ -31,5 +51,3 @@
     {{/if}}
   </div>
 </div>
-
-<script src="/js/create-board.js"></script>

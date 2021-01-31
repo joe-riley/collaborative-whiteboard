@@ -1,11 +1,13 @@
+
 async function newFormHandler(event) {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="board-title"]').value;
-  const description = document.querySelector('textarea[name="board-description"]').value;
+  const title = document.querySelector('#board-title').value;
+  const description = document.querySelector('#board-description').value;
   const board_content = canvas.toDatalessJSON();
+  console.log(board_content);
 
-  const response = await fetch(`/api/boards`, {
+  const response = await fetch(`/boards`, {
     method: 'POST',
     body: JSON.stringify({
       title,
@@ -18,10 +20,10 @@ async function newFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/profile');
+    document.location.replace('/');
   } else {
     alert(response.statusText);
   }
 }
 
-document.querySelector('#saveBoard').addEventListener('click', newFormHandler);
+document.querySelector('#save-board').addEventListener('click', newFormHandler);

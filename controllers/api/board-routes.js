@@ -5,7 +5,7 @@ const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
 
-// GET /api/boards
+// GET /boards
 router.get('/', (req, res) => {
   Board.findAll({
     order: [['created_at', 'DESC']],
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/boards/1
+// GET /boards/1
 router.get('/:id', (req, res) => {
   Board.findOne({
     where: {
@@ -63,13 +63,12 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST /api/boards
+// POST /boards
 router.post('/', (req, res) => {
   Board.create({
     title: req.body.title,
     description: req.body.description,
     board_content: JSON.stringify(req.body.board_content),
-    user_id: req.session.user_id
   })
     .then(dbBoardData => res.json(dbBoardData))
     .catch(err => {

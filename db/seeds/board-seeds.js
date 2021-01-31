@@ -1,4 +1,4 @@
-const { User, Board } = require('../models');
+const { User, Board } = require('../../models');
 
 const boarddata = [
   {
