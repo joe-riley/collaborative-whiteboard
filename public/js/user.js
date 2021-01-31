@@ -19,12 +19,13 @@ const signupHandler = async (event) => {
         'content-type': 'application/json' 
       }
     })
-    console.log(resp);
 
+    const response_me = await resp.json()
+    console.log("obj: ", response_me);
     if(resp.ok) {
-      document.location.replace('/');
+      document.location.replace(`/`);
     } else {
-      alert(resp.statusText);
+      alert(response_me.message);
     }
   };
 }
@@ -50,7 +51,6 @@ const loginHandler = async (event) => {
     })
 
     const response_me = await resp.json()
-    console.log("obj: ", response_me);
     if(resp.ok) {
       document.location.replace(`/`);
     } else {
@@ -65,13 +65,10 @@ const logoutHandler = async (event) => {
   event.preventDefault();
   const resp = await fetch('/users/logout', {
     method: 'post',
-    // body: JSON.stringify({
-    // }),
     headers: {
       'content-type': 'application/json' 
     }
   })
-  console.log(resp);
 
   if(resp.ok) {
     document.location.replace('/');

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// GET /api/users/1
+// GET /users/1
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -49,6 +49,7 @@ router.get('/:id', (req, res) => {
 // POST /users
 router.post('/', (req, res) => {
   // expects {username: 'xyz', email: 'xyz@gmail.com', password: 'password1234'}
+
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -67,6 +68,7 @@ router.post('/', (req, res) => {
       }
     });
   })
+  .catch(err => res.status(400).json({message: err.errors[0].message}));
 });
 
 // POST /users/login
