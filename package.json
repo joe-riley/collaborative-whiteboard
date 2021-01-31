@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --inspect app.js",
-    "start": "nodemon app.js --watch *",
+    "start": "node app.js",
+    "watch": "nodemon app.js --watch *"
     "seed": "node db/seeds/index.js"
   },
   "repository": {
