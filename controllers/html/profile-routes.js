@@ -3,7 +3,7 @@ const sequelize = require('../../config/connection');
 const { Board, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/:user_id', (req, res) => {
+router.get('/', (req, res) => {
   Board.findAll({
     where: {
       user_id: req.params.user_id
@@ -28,9 +28,8 @@ router.get('/:user_id', (req, res) => {
   })
     .then(dbBoardData => {
       // serialize data before passing to template
-      debugger;
       const boards = dbBoardData.map(board => board.get({ plain: true }));
-      res.render('profile', { boards, loggedIn: true });
+      res.render(`profile`, { boards, loggedIn: true });
     })
     .catch(err => {
       console.log(err);

@@ -80,7 +80,7 @@ document.querySelector('#logout-btn').addEventListener('click', logoutHandler);
 
 const profileHandler = async (event) => {
   event.preventDefault();
-  const resp = await fetch('/users/logout', {
+  const resp = await fetch('/profile', {
     method: 'post',
     headers: {
       'content-type': 'application/json' 
