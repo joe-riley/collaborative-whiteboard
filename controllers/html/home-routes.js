@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   Board.findAll({
     attributes: [
       'id',
-      // 'board_content',
+      'board_content',
       'title',
       'description',
       'created_at'
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     include: [
       {
         model: User,
-        attributes: ['username']
+        attributes: ['id']
       }
     ]
   })

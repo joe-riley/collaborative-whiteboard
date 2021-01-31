@@ -21,15 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const instances = M.Modal.init(elems, options);
 });
 
-// document.querySelector('.modal').addEventListener('load', signupHandler);
-
 // confirm password on register after entering confirm password
-// const passwordEl = document.getElementById('password');
-// const confirmPasswordEl = document.getElementById('confirm_password');
-// confirmPasswordEl.addEventListener('keyup', () => {
-//   if (confirmPasswordEl.value !== passwordEl.value) {
-//     confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
-//   } else {
-//     confirmPasswordEl.setCustomValidity('');
-//   }
-// });
+const passwordEl = document.getElementById('reg_password');
+const confirmPasswordEl = document.getElementById('reg_confirm_password');
+confirmPasswordEl.addEventListener('keyup', () => {
+  if (confirmPasswordEl.value !== passwordEl.value) {
+    confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
+  } else {
+    confirmPasswordEl.setCustomValidity('');
+  }
+});

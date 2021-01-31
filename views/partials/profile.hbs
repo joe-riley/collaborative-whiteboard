@@ -41,10 +41,10 @@
   <div class="divider"></div>
   <div class="section">
 
-    {{#if boards.length}}
+    {{#if board}}
     <h3>Your Boards</h3>
     <div class="row">
-      {{#each user.boards as |board|}}
+      {{#each boards as |board|}}
         {{> board-info-homepage board}}
       {{/each}}
     </div>

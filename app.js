@@ -26,7 +26,7 @@ app.engine('hbs', exphbs({
   defaultLayout: 'main',
   layoutsDir: __dirname + '/views/layouts',
   partialsDir: __dirname + '/views/partials',
-  helpers
+  helpers,
 }));
 
 // Public dir
