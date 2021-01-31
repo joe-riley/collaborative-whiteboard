@@ -7,6 +7,7 @@
   --color-egg-shell: #f0ead6;
   --color-forest: #10491e;
   --color-leaf: #7b7200;
+  --color-egg-shell: #f1eff1;
 }
 
 body {
@@ -114,7 +115,7 @@ nav input[type="search"]:focus {
 }
 
 #c {
-  background-color: rgb(113, 98, 122);
-  border: 10px double magenta;
+  background-color: var(--color-egg-shell);
+  border: 5px solid black;
   border-radius: 10px;
 }
