@@ -26,5 +26,4 @@ async function newFormHandler(event) {
   }
 }
 
-// document.querySelector('.new-board-form').addEventListener('submit', newFormHandler);
 document.querySelector('#saveBoard').addEventListener('click', newFormHandler);
