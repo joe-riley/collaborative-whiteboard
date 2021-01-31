@@ -50,11 +50,11 @@ const loginHandler = async (event) => {
       }
     })
 
-    const response_me = await resp.json()
+    const jsonified_response = await resp.json()
     if(resp.ok) {
-      document.location.replace(`/`);
+      document.location.replace(`/profile/${jsonified_response.id}`);
     } else {
-      alert(response_me.message);
+      alert(jsonified_response.message);
     }
   };
 }
@@ -78,3 +78,13 @@ const logoutHandler = async (event) => {
 }
 
 document.querySelector('#logout-btn').addEventListener('click', logoutHandler);
+
+const profileHandler = async (event) => {
+  event.preventDefault();
+
+  const user_id = session.id;
+  console.log(user_id);
+  document.location.replace('/');
+}
+
+document.querySelector('#profile-btn').addEventListener('click', profileHandler);

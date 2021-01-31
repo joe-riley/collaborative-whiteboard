@@ -12,15 +12,16 @@ async function saveBoardHandler(event) {
       title,
       description,
       board_content,
-      userId,
     }),
     headers: {
       'Content-Type': 'application/json'
     },
-  });
+  })
+
+  const jsonified_response = await response.json();
 
   if (response.ok) {
-    document.location.replace('/');
+    document.location.replace(`/profile/${jsonified_response.user_id}`);
   } else {
     alert(response.statusText);
   }
@@ -28,25 +29,18 @@ async function saveBoardHandler(event) {
 
 document.querySelector('#save-board').addEventListener('click', saveBoardHandler);
 
-async function getUserBoards(event) {
-  event.preventDefault();
+async function getUserBoards(user_id) {
+  // event.preventDefault();
 
-  console.log(session.userId);
-  const response = await fetch(`/boards`, {
+  const response = await fetch(`/users/${user_id}`, {
     method: 'POST',
-    body: JSON.stringify({
-      title,
-      description,
-      board_content,
-      userId,
-    }),
     headers: {
       'Content-Type': 'application/json'
     },
   });
 
   if (response.ok) {
-    document.location.replace('/');
+    //document.location.replace('/');
   } else {
     alert(response.statusText);
   }

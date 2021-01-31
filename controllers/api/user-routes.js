@@ -30,7 +30,8 @@ router.get('/:id', (req, res) => {
           'title',
           'description',
           'board_content',
-          'created_at']
+          'created_at'
+        ]
       }
     ]
   })

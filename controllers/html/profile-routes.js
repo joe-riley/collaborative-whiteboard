@@ -14,7 +14,7 @@ router.get('/:user_id', (req, res) => {
     // },
     attributes: [
       'id',
-      // 'board_content',
+      'board_content',
       'title',
       'description',
       'created_at'
@@ -28,6 +28,7 @@ router.get('/:user_id', (req, res) => {
   })
     .then(dbBoardData => {
       // serialize data before passing to template
+      debugger;
       const boards = dbBoardData.map(board => board.get({ plain: true }));
       res.render('profile', { boards, loggedIn: true });
     })

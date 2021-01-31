@@ -41,7 +41,7 @@ router.get('/board/:id', (req, res) => {
     },
     attributes: [
       'id',
-      // 'board_content',
+      'board_content',
       'title',
       'description',
       'created_at'

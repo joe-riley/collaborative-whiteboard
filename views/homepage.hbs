@@ -1,11 +1,7 @@
 <div class="container">
   <div class="row">
-    {{#if loggedIn}}
-      {{> profile}}
-    {{else}}
-      {{#each boards as |board|}}
+    {{#each boards as |board|}}
       {{> board-info-homepage board}}
-      {{/each}}
-    {{/if}}
+    {{/each}}
   </div>
 </div>
