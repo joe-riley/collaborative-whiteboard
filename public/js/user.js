@@ -37,6 +37,7 @@ const loginHandler = async (event) => {
   const username = document.querySelector('#log_username').value.trim();
   const password = document.querySelector('#log_password').value.trim();
 
+  console.log("I am in the login handler");
   if (username && password) {
     const resp = await fetch('/users/login', {
       method: 'post',
@@ -51,7 +52,7 @@ const loginHandler = async (event) => {
 
     const jsonified_response = await resp.json()
     if(resp.ok) {
-      document.location.replace(`/profile/${jsonified_response.id}`);
+      document.location.replace(`profile`);
     } else {
       alert(jsonified_response.message);
     }
@@ -86,6 +87,7 @@ const profileHandler = async (event) => {
       'content-type': 'application/json' 
     }
   })
+  
 }
 
 document.querySelector('#profile-btn').addEventListener('click', profileHandler);

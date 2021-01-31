@@ -21,7 +21,8 @@ async function saveBoardHandler(event) {
   const jsonified_response = await response.json();
 
   if (response.ok) {
-    document.location.replace(`/profile/${jsonified_response.user_id}`);
+    // document.location.replace(`/profile/${jsonified_response.user_id}`);
+    // document.location.replace(`/profile/`);
   } else {
     alert(response.statusText);
   }
@@ -60,7 +61,7 @@ async function deleteFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/profile/');
+    // document.location.replace('/profile/');
   } else {
     alert(response.statusText);
   }
