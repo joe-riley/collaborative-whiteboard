@@ -18,14 +18,15 @@
     </div>
     <button type="submit" class="btn">Create</button>
   </div>
+  {{> board-editor}}
   <div class="divider"></div>
   <div class="section">
 
     {{#if boards.length}}
     <h3>Your Boards</h3>
     <div class="row">
-      {{#each boards as |board|}}
-      {{> board-info-homepage board}}
+      {{#each user.boards as |board|}}
+        {{> board-info-homepage board}}
       {{/each}}
     </div>
     {{/if}}

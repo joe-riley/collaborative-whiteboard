@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
@@ -17,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // Views dir
 app.set('views', __dirname + '/views');
 
+// Set app engine
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs({
   extname: 'hbs',
@@ -27,17 +30,9 @@ app.engine('hbs', exphbs({
 }));
 
 // Public dir
-// app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname,'/public/')));
 
-
-
-// Controllers
-// app.use(require('./controllers'));
-
-const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+// Create session for connect sequelize session
 const sess = {
   secret: process.env.SEQUELIZE_STORE,
   cookie: {},

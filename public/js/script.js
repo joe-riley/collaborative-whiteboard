@@ -7,19 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // modal trigger
 document.addEventListener('DOMContentLoaded', () => {
-  var elems = document.querySelectorAll('.modal');
-  let options = [];
-  var instances = M.Modal.init(elems, options);
+  const elems = document.querySelectorAll('.modal');
+  let options = {
+    onOpenEnd: () => {
+      // Get the open modal and set focus on the first input element.
+      elems.forEach((modal) => {
+        if (M.Modal.getInstance(modal).isOpen) {
+          modal.querySelector('input:nth-child(1)').focus();
+        }
+      }) 
+    }
+  };
+  const instances = M.Modal.init(elems, options);
 });
 
+// document.querySelector('.modal').addEventListener('load', signupHandler);
+
 // confirm password on register after entering confirm password
-const passwordEl = document.getElementById('password');
-const confirmPasswordEl = document.getElementById('confirm_password');
-confirmPasswordEl.addEventListener('keyup', () => {
-  console.log('lah');
-  if (confirmPasswordEl.value !== passwordEl.value) {
-    confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
-  } else {
-    confirmPasswordEl.setCustomValidity('');
-  }
-});
+// const passwordEl = document.getElementById('password');
+// const confirmPasswordEl = document.getElementById('confirm_password');
+// confirmPasswordEl.addEventListener('keyup', () => {
+//   if (confirmPasswordEl.value !== passwordEl.value) {
+//     confirmPasswordEl.setCustomValidity('Passwords Do Not Match')
+//   } else {
+//     confirmPasswordEl.setCustomValidity('');
+//   }
+// });

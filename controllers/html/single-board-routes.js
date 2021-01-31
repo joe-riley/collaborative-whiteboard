@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Board, User } = require('../models');
-const withAuth = require('../utils/auth');
+const sequelize = require('../../config/connection');
+const { Board, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/:id', (req, res) => {
   Board.findOne({
