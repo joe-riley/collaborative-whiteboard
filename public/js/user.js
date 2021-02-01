@@ -86,3 +86,10 @@ const profileHandler = async (event) => {
 }
 
 document.querySelector('#profile-btn').addEventListener('click', profileHandler);
+
+// character counter on create new board form
+document.addEventListener('DOMContentLoaded', function () {
+  var textNeedCount = document.querySelectorAll('#board-title, #board-description');
+  M.CharacterCounter.init(textNeedCount);
+});
+
