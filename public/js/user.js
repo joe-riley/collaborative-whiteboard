@@ -22,7 +22,7 @@ const signupHandler = async (event) => {
 
     const jsonified_response = await resp.json()
     if(resp.ok) {
-      document.location.replace(`profile`);
+      document.location.replace('/profile');
     } else {
       alert(jsonified_response.message);
     }
@@ -52,7 +52,7 @@ const loginHandler = async (event) => {
 
     const jsonified_response = await resp.json()
     if(resp.ok) {
-      document.location.replace(`profile`);
+      document.location.replace('/profile');
     } else {
       alert(jsonified_response.message);
     }
@@ -81,7 +81,7 @@ document.querySelector('#logout-btn').addEventListener('click', logoutHandler);
 
 const profileHandler = async (event) => {
   event.preventDefault();
-  document.location.replace(`profile`);
+  document.location.replace(`/profile`);
   
 }
 
