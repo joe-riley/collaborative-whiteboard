@@ -53,6 +53,12 @@ nav input[type="search"]:focus {
   color: #111111;
 }
 
+.page-footer {
+  background-color: var(--color-dark-blue);
+  width: 100%;
+  color: var(--color-gold);
+}
+
 .modal {
   background-color: var(--color-baby-blue);
 }
