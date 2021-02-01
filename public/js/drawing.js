@@ -1,14 +1,14 @@
 /////////////////////////////////
 // free drawing
 
-var canvas = (this.__canvas = new fabric.Canvas("c", {
-  isDrawingMode: false,
-}));
-(() => {
+(function () {
   var $ = function (id) {
     return document.getElementById(id);
   };
 
+  // var canvas = (this.__canvas = new fabric.Canvas("c", {
+  //   isDrawingMode: true,
+  // }));
 
   fabric.Object.prototype.transparentCorners = false;
 
@@ -166,24 +166,26 @@ var canvas = (this.__canvas = new fabric.Canvas("c", {
     canvas.freeDrawingBrush.shadow.blur = parseInt(this.value, 10) || 0;
     this.previousSibling.innerHTML = this.value;
   };
-    drawingShadowOffset.onchange = function () {
-      canvas.freeDrawingBrush.shadow.offsetX = parseInt(this.value, 10) || 0;
-      canvas.freeDrawingBrush.shadow.offsetY = parseInt(this.value, 10) || 0;
-      this.previousSibling.innerHTML = this.value;
-    };
+  drawingShadowOffset.onchange = function () {
+    canvas.freeDrawingBrush.shadow.offsetX = parseInt(this.value, 10) || 0;
+    canvas.freeDrawingBrush.shadow.offsetY = parseInt(this.value, 10) || 0;
+    this.previousSibling.innerHTML = this.value;
+  };
 
-  // if (canvas.freeDrawingBrush) {
-  //   canvas.freeDrawingBrush.color = drawingColorEl.value;
-  //   canvas.freeDrawingBrush.source = canvas.freeDrawingBrush.getPatternSrc.call(this);
-  //   canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
-  //   canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-  //     blur: parseInt(drawingShadowWidth.value, 10) || 0,
-  //     offsetX: 0,
-  //     offsetY: 0,
-  //     affectStroke: true,
-  //     color: drawingShadowColorEl.value,
-  //   });
-  // }
+  if (canvas.freeDrawingBrush) {
+    canvas.freeDrawingBrush.color = drawingColorEl.value;
+    //canvas.freeDrawingBrush.source = canvas.freeDrawingBrush.getPatternSrc.call(
+    //this
+    //);
+    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+    canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+      blur: parseInt(drawingShadowWidth.value, 10) || 0,
+      offsetX: 0,
+      offsetY: 0,
+      affectStroke: true,
+      color: drawingShadowColorEl.value,
+    });
+  }
 })();
 
 /////////////////////////////////
