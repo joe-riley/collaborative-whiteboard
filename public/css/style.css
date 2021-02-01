@@ -55,7 +55,6 @@ nav input[type="search"]:focus {
 
 .page-footer {
   background-color: var(--color-dark-blue);
-  width: 100%;
   color: var(--color-gold);
 }
 
