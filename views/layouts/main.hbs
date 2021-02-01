@@ -23,8 +23,14 @@
 					<li>
 						<input placeholder="Search Boards" data-target="search" type="search" class="input-field">
 					</li>
-					<li><button data-target="signup-modal" class="btn modal-trigger">signup</button></li>
-					<li><button data-target="login-modal" class="btn modal-trigger">login</button></li>
+					{{#if loggedIn}}
+						<li><button class="btn" id="logout-btn">logout</button></li>
+						<li><button class="btn" id="profile-btn">profile</button></li>
+					{{else}}
+						<li><button data-target="signup-modal" class="btn modal-trigger">signup</button></li>
+						<li><button data-target="login-modal" class="btn modal-trigger">login</button></li>
+					{{/if}}
+						
 				</ul>
 			</header>
 		</div>
@@ -45,12 +51,9 @@
 	<main>
 		{{{ body }}}
 	</main>
-
 	<script type="text/javascript" src="/js/materialize.min.js"></script>
 	<script type="text/javascript" src="/js/script.js"></script>
-	<script type="text/javascript" src="/js/board_controller.js"></script>
-	<script type="text/javascript" src="/js/drawing.js"></script>
-
+	<script type="text/javascript" src="/js/user.js"></script>
 
 </body>
 
