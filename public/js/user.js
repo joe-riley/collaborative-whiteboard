@@ -7,7 +7,7 @@ const signupHandler = async (event) => {
   console.log(`In SignupHandler, got ${username}, ${password}, ${email}`);
 
   if (username && password && email) {
-    
+
     const resp = await fetch('/users', {
       method: 'post',
       body: JSON.stringify({
@@ -16,12 +16,12 @@ const signupHandler = async (event) => {
         email,
       }),
       headers: {
-        'content-type': 'application/json' 
+        'content-type': 'application/json'
       }
     })
 
     const jsonified_response = await resp.json()
-    if(resp.ok) {
+    if (resp.ok) {
       document.location.replace('/profile');
     } else {
       alert(jsonified_response.message);
@@ -46,12 +46,12 @@ const loginHandler = async (event) => {
         password,
       }),
       headers: {
-        'content-type': 'application/json' 
+        'content-type': 'application/json'
       }
     })
 
     const jsonified_response = await resp.json()
-    if(resp.ok) {
+    if (resp.ok) {
       document.location.replace('/profile');
     } else {
       alert(jsonified_response.message);
@@ -66,11 +66,11 @@ const logoutHandler = async (event) => {
   const resp = await fetch('/users/logout', {
     method: 'post',
     headers: {
-      'content-type': 'application/json' 
+      'content-type': 'application/json'
     }
   })
 
-  if(resp.ok) {
+  if (resp.ok) {
     document.location.replace('/');
   } else {
     alert(resp.statusText);
@@ -82,7 +82,7 @@ document.querySelector('#logout-btn').addEventListener('click', logoutHandler);
 const profileHandler = async (event) => {
   event.preventDefault();
   document.location.replace(`/profile`);
-  
+
 }
 
 document.querySelector('#profile-btn').addEventListener('click', profileHandler);

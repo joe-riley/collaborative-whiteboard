@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (M.Modal.getInstance(modal).isOpen) {
           modal.querySelector('input:nth-child(1)').focus();
         }
-      }) 
+      })
     }
   };
   const instances = M.Modal.init(elems, options);

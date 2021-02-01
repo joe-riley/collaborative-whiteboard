@@ -116,6 +116,6 @@ nav input[type="search"]:focus {
 
 #c {
   background-color: var(--color-egg-shell);
-  border: 5px solid black;
+  border: 3px solid black;
   border-radius: 10px;
 }
